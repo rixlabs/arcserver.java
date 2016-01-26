@@ -1,8 +1,12 @@
 package arcserver.java.lib.arcserver.geometry;
 
-public class Multipoint {
+public class Multipoint extends Geometry{
 
-	private String geometryType = "esriGeometryMultipoint";
+	private static String geometryType = "esriGeometryMultipoint";
+	
+	public Multipoint(){
+		super(geometryType);
+	}
 	
 	public String getGeometryType() {
 		return geometryType;
