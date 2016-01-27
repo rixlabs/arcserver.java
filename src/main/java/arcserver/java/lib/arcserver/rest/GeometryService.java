@@ -18,12 +18,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import arcserver.java.lib.arcserver.geometry.Envelope;
 import arcserver.java.lib.arcserver.geometry.Geometry;
-import arcserver.java.lib.arcserver.geometry.Multipoint;
 import arcserver.java.lib.arcserver.geometry.Point;
-import arcserver.java.lib.arcserver.geometry.Polygon;
-import arcserver.java.lib.arcserver.geometry.Polyline;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -90,10 +86,10 @@ public class GeometryService {
 	public String params(Geometry[] geometries){
 		//public void params(Geometry[] geometries,List<? extends Geometry> gg){
 		
-		
+		/*
 		Map<String, Geometry[]> geoStructure = new HashMap<String, Geometry[]>();
 		//geoStructure.put("geometries", geometries);
-		/*
+		
 		Geometry reference = gg.get(0);
 		
 		if(reference.getClass().equals(Polygon.class)){
@@ -129,14 +125,14 @@ public class GeometryService {
 		*/
 		Gson gson = new Gson();
 		System.out.println("test poly");
-		HashMap<String, String> finalHash = new HashMap<String, String>();
+		HashMap<String, Object> finalHash = new HashMap<String, Object>();
 		finalHash.put("geometryType", geometries[0].getGeometryType());
-		finalHash.put("geometries", gson.toJson(geometries));
-		System.out.println(finalHash);
-		System.out.println(gson.toJson(finalHash));
-		String geometry_params = "{geometryType:"+geometries[0].getGeometryType()+",geometries:"+gson.toJson(geometries)+"}";
-		//return gson.toJson(finalHash);
-		return geometry_params;
+		finalHash.put("geometries", geometries);
+		System.out.println("OBJ -> "+finalHash);
+		System.out.println("JSON OBJ -> "+gson.toJson(finalHash));
+		//String geometry_params = "{geometryType:"+geometries[0].getGeometryType()+",geometries:"+gson.toJson(geometries)+"}";
+		return gson.toJson(finalHash);
+		//return geometry_params;
 		
 	}
 	/*
